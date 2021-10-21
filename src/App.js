@@ -1,19 +1,18 @@
 import Form from "./Form";
 import React ,{useState} from "react";
 import Todo from "./components/Todo";
-function App(props) {
-  //receive the todos as a property and use them to set a initial state 
-  const [toDos, setToDos]=useState(props.toDos);
+function App() { 
+  const [toDos, setToDos]=useState([]);
   //this function is called when the add button in the form is clicked
   function removeToDo(id){
-    setToDos(toDos.filter(todo=>todo.id!=id));
+    let filteredArray=toDos.filter((todo,index)=>index!==id)
+    setToDos(filteredArray);
   }
-  function addnewToDo(text){
-    const id=Math.random()+'';
-    const newToDo={id:id,text:text, removeToDo:removeToDo};
+  function addnewToDo(name){
+    const newToDo={name:name};
     setToDos([newToDo,...toDos]);
   }
-  const toDoList=toDos.map(toDo=> <Todo {...toDo} />)
+ 
   return (
     <div className='page-content'>
       <header>
@@ -21,8 +20,14 @@ function App(props) {
       </header>
       <Form addnewToDoFunction={addnewToDo}/>
       <div className='todos-holder'>
-        {toDoList}
-    </div>
+        {toDos.map((toDo,index)=> 
+          <Todo
+            key={index} 
+            id={index}
+            name={toDo.name}
+            removeToDo={removeToDo}
+          />)}
+      </div>
     </div>
   );
 }
