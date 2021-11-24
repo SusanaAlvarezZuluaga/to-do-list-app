@@ -22,12 +22,11 @@ function App() {
         {toDos.length > 0 ? (
           <div className="your-tasks-title">Your taks</div>
         ) : null}
-        {toDos.map((toDo, index) => (
+        {toDos.map((toDo) => (
           <Todo
-            key={index}
+            key={toDo.id}
             id={toDo.id}
             name={toDo.name}
-            completed={false}
             removeToDo={removeToDo}
           />
         ))}

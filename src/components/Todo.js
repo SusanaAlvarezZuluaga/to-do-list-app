@@ -3,16 +3,14 @@ import { useState } from 'react';
 function Todo(props) {
   const { name, id, removeToDo } = props;
   const [completed, setCompleted] = useState(false);
-  function handleClickCheckButton() {
-    setCompleted(!completed);
-  }
+
   return (
     <div>
       <div className="todo">
         <div className="todo-header">
           <div
             className="todo-check-button"
-            onClick={() => handleClickCheckButton()}
+            onClick={() => setCompleted(!completed)}
           >
             <span className="material-icons md-36">
               {completed ? 'check_box' : 'check_box_outline_blank'}
