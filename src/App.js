@@ -20,7 +20,7 @@ function App() {
       <Form addnewToDoFunction={addnewToDo} />
       <div className="todos-holder">
         {toDos.length > 0 ? (
-          <div className="your-tasks-title">Your taks</div>
+          <div className="your-tasks-title">All tasks</div>
         ) : null}
         {toDos.map((toDo) => (
           <Todo
