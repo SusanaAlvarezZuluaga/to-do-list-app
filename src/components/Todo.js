@@ -1,18 +1,32 @@
-function Todo(props){
-    return (
-        <div>
-            <div className='todo'>
-                <div className='todo-header'>
-                    <div>
-                        <span className="material-icons md-36">radio_button_unchecked</span>
-                    </div>
-                    <div className='todo-title'>{props.name}</div>
-                </div>
-                <div>
-                    <span className="material-icons md-36" onClick={()=>props.removeToDo(props.id)} >delete</span>
-                </div>
-            </div> 
+import { useState } from 'react';
+
+function Todo(props) {
+  const { name, id, removeToDo } = props;
+  const [completed, setCompleted] = useState(false);
+  function handleClickCheckButton() {
+    setCompleted(!completed);
+  }
+  return (
+    <div>
+      <div className="todo">
+        <div className="todo-header">
+          <div
+            className="todo-check-button"
+            onClick={() => handleClickCheckButton()}
+          >
+            <span className="material-icons md-36">
+              {completed ? 'check_box' : 'check_box_outline_blank'}
+            </span>
+          </div>
+          <div className="todo-title">{name}</div>
         </div>
-    );  
+        <div>
+          <span className="material-icons md-36" onClick={() => removeToDo(id)}>
+            delete
+          </span>
+        </div>
+      </div>
+    </div>
+  );
 }
 export default Todo;
